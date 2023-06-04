@@ -37,12 +37,12 @@ namespace basedatos
         private void button1_Click(object sender, EventArgs e)
         {
             cn.Open();
-            string insertar = "INSERT INTO estudiantes(NoControl,Nombre,Apellido_Paterno,Apellido_Materno,Semestre,Correo_electronico)values(@NoControl,@Nombre,@Apellido_Paterno,@Apellido_Materno,@Semestre,@Correo_electronico)";
+            string insertar = "INSERT INTO estudiantes(NoControl,Nombre,Apellidos,Nombre_Libro,Semestre,Correo_electronico)values(@NoControl,@Nombre,@Apellidos,@nombre_libro,@Semestre,@Correo_electronico)";
             MySqlCommand cmd = new MySqlCommand(insertar,cn);
             cmd.Parameters.AddWithValue("@NoControl",text_nocontrol.Text);
             cmd.Parameters.AddWithValue("@Nombre", text_nombre.Text);
-            cmd.Parameters.AddWithValue("@Apellido_Paterno", text_apaterno.Text);
-            cmd.Parameters.AddWithValue("@Apellido_Materno", text_amaterno.Text);
+            cmd.Parameters.AddWithValue("@Apellidos", text_Apellidos.Text);
+            cmd.Parameters.AddWithValue("@nombre_libro", text_NombreLibro.Text);
             cmd.Parameters.AddWithValue("@Semestre", text_semestre.Text);
             cmd.Parameters.AddWithValue("@Correo_electronico", text_correo.Text);
             cmd.ExecuteNonQuery();
@@ -74,12 +74,12 @@ namespace basedatos
         private void btn_modificar_Click(object sender, EventArgs e)
         {
             cn.Open();
-            string modificar = "UPDATE estudiantes SET NoControl=@nocontrol,Nombre=@nombre,Apellido_Paterno=@apellido_paterno,Apellido_Materno=@apellido_materno,Correo_electronico=@correo_electronico,Semestre=@semestre where NoControl=@nocontrol";
+            string modificar = "UPDATE estudiantes SET NoControl=@nocontrol,Nombre=@nombre,Apellidos=@Apellidos,Nombre_Libro=@nombre_libro,Correo_electronico=@correo_electronico,Semestre=@semestre where NoControl=@nocontrol";
             MySqlCommand cmd= new MySqlCommand(modificar,cn);
             cmd.Parameters.AddWithValue("@nocontrol", text_nocontrol.Text);
             cmd.Parameters.AddWithValue("@nombre", text_nombre.Text);
-            cmd.Parameters.AddWithValue("@apellido_paterno", text_apaterno.Text);
-            cmd.Parameters.AddWithValue("@apellido_materno", text_amaterno.Text);
+            cmd.Parameters.AddWithValue("@Apellidos", text_Apellidos.Text);
+            cmd.Parameters.AddWithValue("@nombre_libro", text_NombreLibro.Text);
             cmd.Parameters.AddWithValue("@semestre", text_semestre.Text);
             cmd.Parameters.AddWithValue("@correo_electronico", text_correo.Text);
             
@@ -98,8 +98,8 @@ namespace basedatos
             {
                 text_nocontrol.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 text_nombre.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                text_apaterno.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                text_amaterno.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                text_Apellidos.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                text_NombreLibro.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
                 text_semestre.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
                 text_correo.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
                 
@@ -127,8 +127,8 @@ namespace basedatos
         {
             text_nocontrol.Clear();
             text_nombre.Clear();
-            text_apaterno.Clear();
-            text_amaterno.Clear();
+            text_Apellidos.Clear();
+            text_NombreLibro.Clear();
             text_semestre.Clear();
             text_correo.Clear();
             
@@ -141,6 +141,11 @@ namespace basedatos
         }
 
         private void text_correo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
         {
 
         }
