@@ -37,12 +37,12 @@ namespace basedatos
         private void button1_Click(object sender, EventArgs e)
         {
             cn.Open();
-            string insertar = "INSERT INTO estudiantes(NoControl,Nombre,Apellido_Paterno,Apellido_Materno,Semestre,Correo_electronico)values(@NoControl,@Nombre,@Apellido_Paterno,@Apellido_Materno,@Semestre,@Correo_electronico)";
+            string insertar = "INSERT INTO estudiantes(NoControl,Nombre,Apellidos,Nombre_Libro,Semestre,Correo_electronico)values(@NoControl,@Nombre,@Apellidos,@nombre_libro,@Semestre,@Correo_electronico)";
             MySqlCommand cmd = new MySqlCommand(insertar,cn);
             cmd.Parameters.AddWithValue("@NoControl",text_nocontrol.Text);
             cmd.Parameters.AddWithValue("@Nombre", text_nombre.Text);
-            cmd.Parameters.AddWithValue("@Apellido_Paterno", text_apaterno.Text);
-            cmd.Parameters.AddWithValue("@Apellido_Materno", text_amaterno.Text);
+            cmd.Parameters.AddWithValue("@Apellidos", text_Apellidos.Text);
+            cmd.Parameters.AddWithValue("@nombre_libro", text_NombreLibro.Text);
             cmd.Parameters.AddWithValue("@Semestre", text_semestre.Text);
             cmd.Parameters.AddWithValue("@Correo_electronico", text_correo.Text);
             cmd.ExecuteNonQuery();
@@ -52,6 +52,7 @@ namespace basedatos
             MessageBox.Show("Los datos fueron agregados correctamente");
             dataGridView1.DataSource = llenar_grid(); 
         }
+
 
 
         
