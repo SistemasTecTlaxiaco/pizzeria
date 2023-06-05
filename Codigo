@@ -91,6 +91,24 @@ namespace basedatos
             MessageBox.Show("Datos Modificados ");
             dataGridView1.DataSource = llenar_grid();
         }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                text_nocontrol.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                text_nombre.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                text_Apellidos.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                text_NombreLibro.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                text_semestre.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+                text_correo.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                
+               
+            }
+            catch
+            {
+
+            }
+        }
 
 
         
