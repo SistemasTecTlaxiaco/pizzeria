@@ -52,8 +52,66 @@ namespace basedatos
             MessageBox.Show("Los datos fueron agregados correctamente");
             dataGridView1.DataSource = llenar_grid(); 
         }
+        
 
+        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+           dataGridView1.DataSource = llenar_grid();
+        }
+        public DataTable llenar_grid(){
+            cn.Open();
+            DataTable dt = new DataTable();
+            String llenar = "select*from estudiantes";
+            MySqlCommand cmd = new MySqlCommand(llenar,cn);
+            MySqlDataAdapter da=new MySqlDataAdapter(cmd);
+            da.Fill(dt);
+            cn.Close();
+            return dt;
 
+        }
+
+        private void btn_modificar_Click(object sender, EventArgs e)
+        {
+            cn.Open();
+            string modificar = "UPDATE estudiantes SET NoControl=@nocontrol,Nombre=@nombre,Apellidos=@Apellidos,Nombre_Libro=@nombre_libro,Correo_electronico=@correo_electronico,Semestre=@semestre where NoControl=@nocontrol";
+            MySqlCommand cmd= new MySqlCommand(modificar,cn);
+            cmd.Parameters.AddWithValue("@nocontrol", text_nocontrol.Text);
+            cmd.Parameters.AddWithValue("@nombre", text_nombre.Text);
+            cmd.Parameters.AddWithValue("@Apellidos", text_Apellidos.Text);
+            cmd.Parameters.AddWithValue("@nombre_libro", text_NombreLibro.Text);
+            cmd.Parameters.AddWithValue("@semestre", text_semestre.Text);
+            cmd.Parameters.AddWithValue("@correo_electronico", text_correo.Text);
+            
+            
+           
+            cmd.ExecuteNonQuery();
+
+            cn.Close();
+            MessageBox.Show("Datos Modificados ");
+            dataGridView1.DataSource = llenar_grid();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                text_nocontrol.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                text_nombre.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                text_Apellidos.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                text_NombreLibro.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                text_semestre.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+                text_correo.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                
+               
+            }
+            catch
+            {
+
+            }
+        }
+
+        
 
         
     
