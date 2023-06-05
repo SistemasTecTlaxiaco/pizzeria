@@ -109,6 +109,18 @@ namespace basedatos
 
             }
         }
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            cn.Open();
+            string eliminar = "DELETE FROM  estudiantes WHERE NoControl=@nocontrol";
+            MySqlCommand cmd = new MySqlCommand(eliminar,cn);
+            cmd.Parameters.AddWithValue("@nocontrol", text_nocontrol.Text);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+            MessageBox.Show("Los datos fueron eliminados ");
+            dataGridView1.DataSource = llenar_grid();
+        }
+
 
 
         
