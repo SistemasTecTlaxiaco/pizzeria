@@ -120,10 +120,15 @@ namespace basedatos
             MessageBox.Show("Los datos fueron eliminados ");
             dataGridView1.DataSource = llenar_grid();
         }
-
-
-
         
-
-        
-    
+        rivate void btn_limpiar_Click(object sender, EventArgs e)
+        {
+            text_nocontrol.Clear();
+            text_nombre.Clear();
+            text_Apellidos.Clear();
+            text_NombreLibro.Clear();
+            text_semestre.Clear();
+            text_correo.Clear();
+            
+            
+        }
